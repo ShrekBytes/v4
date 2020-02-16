@@ -2,6 +2,7 @@ import IconLoader from './loader';
 import IconLogo from './logo';
 import IconGitHub from './github';
 import IconLinkedin from './linkedin';
+import IconMedium from './medium';
 import IconCodepen from './codepen';
 import IconInstagram from './instagram';
 import IconTwitter from './twitter';
@@ -18,6 +19,7 @@ export {
   IconLogo,
   IconGitHub,
   IconLinkedin,
+  IconMedium,
   IconCodepen,
   IconInstagram,
   IconTwitter,
