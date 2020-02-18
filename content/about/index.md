@@ -5,14 +5,21 @@ skills:
   - JavaScript (ES6+)
   - HTML & (S)CSS
   - React
-  - Vue
+  - Redux
   - Node.js
   - Express
-  - NativeScript
+  - React-Native
+  - Next.js
+  - GraphQL
+  - Typescript
+  - PostgreSQL
+  - MongoDB
+  - Java
+  - Android
 ---
 
-Hello! I'm Brittany, a software engineer based in Boston, MA who enjoys building things that live on the internet. I develop exceptional websites and web apps that provide intuitive, pixel-perfect user interfaces with efficient and modern backends.
+Hello! I'm Gapur, a full-stack software engineer and writer. Here's the link to my blog on [medium](https://medium.com/@gapur.kassym). I love programming, writing, speaking and traveling.
 
-Shortly after graduating from [Northeastern University](https://www.ccis.northeastern.edu/), I joined the engineering team at [Upstatement](https://www.upstatement.com/) where I work on a wide variety of interesting and meaningful projects on a daily basis.
+As a software engineer, I enjoy using my obsessive attention to detail, my unequivocal love for making things that change the world. That's why I like to make things that make a difference.
 
 Here are a few technologies I've been working with recently:
