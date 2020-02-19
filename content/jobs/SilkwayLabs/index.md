@@ -3,7 +3,7 @@ date: '2017-09-02'
 title: 'JavaScript Developer'
 company: 'Silkway Labs'
 location: 'Karagandy, Kazakhstan'
-range: 'Sep - Aug 2018'
+range: 'Sep 2017 - Aug 2018'
 url: 'https://silkwaylabs.com'
 ---
 
