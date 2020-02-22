@@ -6,7 +6,6 @@ tech:
   - Redux
   - REST API
 company: 'Freelance'
-showInProjects: true
 show: false
 ---
 

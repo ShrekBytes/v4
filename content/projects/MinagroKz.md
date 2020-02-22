@@ -7,7 +7,6 @@ tech:
   - Retrofit
   - REST API
 company: 'AO Information Accounting Center'
-showInProjects: true
 show: false
 ---
 

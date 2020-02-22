@@ -2,11 +2,11 @@
 date: '2018-12-01'
 title: 'Dakota Worker App'
 tech:
+  - React
   - React Native
   - Redux
   - Typescript
 company: 'SecondCompany'
-showInProjects: true
 show: false
 ---
 

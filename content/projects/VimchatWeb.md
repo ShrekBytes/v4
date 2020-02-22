@@ -6,7 +6,6 @@ tech:
   - Redux
   - Firebase
 company: 'Vimchat'
-showInProjects: true
 show: false
 ---
 

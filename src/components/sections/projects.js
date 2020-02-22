@@ -34,6 +34,7 @@ const StyledArchiveLink = styled(Link)`
 `;
 const StyledGrid = styled.div`
   margin-top: 50px;
+  width: 100%;
 
   .projects {
     display: grid;

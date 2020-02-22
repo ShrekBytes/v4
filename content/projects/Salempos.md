@@ -7,7 +7,6 @@ tech:
   - PostgreSQL
   - Express
 company: 'Freelance'
-showInProjects: true
 show: false
 ---
 

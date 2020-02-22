@@ -4,9 +4,9 @@ title: 'Dakota Customer Portal'
 tech:
   - React
   - Redux
+  - GraphQL
   - Typescript
 company: 'SecondCompany'
-showInProjects: true
 show: false
 ---
 

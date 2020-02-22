@@ -2,11 +2,11 @@
 date: '2019-04-01'
 title: 'Dakota Calc App'
 tech:
+  - React
   - React-Native
   - GraphQL
   - Typescript
 company: 'SecondCompany'
-showInProjects: true
 show: false
 ---
 

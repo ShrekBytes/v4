@@ -7,7 +7,6 @@ tech:
   - Redux
   - REST API
 company: 'Silkway Labs'
-showInProjects: true
 show: false
 ---
 

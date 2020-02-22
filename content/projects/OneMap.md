@@ -6,8 +6,8 @@ tech:
   - React
   - Redux
   - GraphQL
+  - AntDesign
 company: 'Silkway Labs'
-showInProjects: true
 ---
 
 OneMap admin on React(Graphql Apollo) with AntDesign

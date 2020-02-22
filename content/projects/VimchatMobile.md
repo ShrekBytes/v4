@@ -6,7 +6,6 @@ tech:
   - React Native
   - Firebase
 company: 'Vimchat'
-showInProjects: true
 show: false
 ---
 

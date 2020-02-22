@@ -5,9 +5,9 @@ external: 'https://apps.apple.com/us/app/cpe-mobile/id1449269487'
 tech:
   - React
   - React Native
+  - Redux
   - Typescript
 company: 'SecondCompany'
-showInProjects: true
 show: false
 ---
 

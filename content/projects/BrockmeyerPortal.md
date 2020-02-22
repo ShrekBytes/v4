@@ -4,10 +4,10 @@ title: 'Brockmeyer Portal'
 tech:
   - React
   - Redux
+  - Typescript
   - REST API
 company: 'SecondCompany'
-showInProjects: true
-show: 'false'
+show: false
 ---
 
 Developed Brockmeyer Portal on React and Nodejs. This web app is a portal for looking for employees in Europe.
