@@ -1,7 +1,7 @@
 ---
 title: 'Hi, my name is'
 name: 'Gapur Kassym'
-subtitle: 'I am Fullstack Software Engineer, Writer'
+subtitle: 'I am a Fullstack Software Engineer, Writer'
 contactText: 'Get In Touch'
 ---
 
