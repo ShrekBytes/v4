@@ -4,7 +4,7 @@ module.exports = {
     'Gapur Kassym is passionate about building excellent software that improves the lives of those around me. I specialize in creating software for clients ranging from individuals and small-businesses all the way to large enterprise corporations.',
   siteKeywords:
     'Gapur Kassym, Gapur, Kassym, gkassym, software engineer, frontend engineer, web developer, javascript, react',
-  siteUrl: 'https://brittanychiang.com',
+  siteUrl: 'https://gkassym.netlify.com',
   siteLanguage: 'en_US',
   googleAnalyticsID: 'UA-45666519-2',
   googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
