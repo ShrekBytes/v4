@@ -3,7 +3,7 @@ date: '2019-10-01'
 title: 'JavaScript Software Engineer'
 company: 'Ogram'
 location: 'Karagandy, Kazakhstan'
-range: 'Oct 2019 - Present'
+range: 'Oct 2019 - Apr 2021'
 url: 'https://www.linkedin.com/in/gapur-kassym/'
 ---
 
