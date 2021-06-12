@@ -8,5 +8,4 @@ url: 'https://www.gosreestr.kz'
 ---
 
 - Developed NIIS Web on ASP.NET MVC(C#). The web app is used for creating, processing and filing patents in Kazakhstan
-- Created and launched an app for grain receipts in Kazakhstan "Minagro.kz: е-зерно" on Android(Java)
-- Supported online auction e-Auction.kz(Android)
+- Supported online auction e-Auction.kz(Android) with 20k users
