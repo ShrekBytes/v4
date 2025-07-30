@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
+import useNearScreen from '@utils/useNearScreen';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
@@ -106,7 +107,7 @@ const StyledLinkWrapper = styled.div`
     }
   }
 `;
-const StyledFeaturedImg = styled(Img)`
+const StyledFeaturedImg = styled(GatsbyImage)`
   width: 100%;
   max-width: 100%;
   vertical-align: middle;
@@ -209,13 +210,16 @@ const Featured = ({ data }) => {
 
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
+  const [ref, isNearScreen] = useNearScreen({ rootMargin: '300px 0px' });
   useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-  }, []);
+    if (isNearScreen) {
+      sr.reveal(revealTitle.current, srConfig());
+      revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
+    }
+  }, [isNearScreen]);
 
   return (
-    <StyledContainer id="projects">
+    <StyledContainer id="projects" ref={ref}>
       <Heading ref={revealTitle}>Some Things I&apos;ve Built</Heading>
 
       <div>
@@ -223,6 +227,7 @@ const Featured = ({ data }) => {
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
             const { external, title, tech, github, cover } = frontmatter;
+            const image = getImage(cover);
 
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
@@ -275,7 +280,7 @@ const Featured = ({ data }) => {
                   href={external ? external : github ? github : '#'}
                   target="_blank"
                   rel="nofollow noopener noreferrer">
-                  <StyledFeaturedImg fluid={cover.childImageSharp.fluid} />
+                  <StyledFeaturedImg image={image} />
                 </StyledImgContainer>
               </StyledProject>
             );

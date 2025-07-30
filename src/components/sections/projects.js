@@ -7,6 +7,7 @@ import { srConfig } from '@config';
 import { IconGitHub, IconExternal, IconFolder } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Button } from '@styles';
+import useNearScreen from '@utils/useNearScreen';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
@@ -132,12 +133,15 @@ const Projects = ({ data }) => {
   const revealTitle = useRef(null);
   const revealArchiveLink = useRef(null);
   const revealProjects = useRef([]);
+  const [ref, isNearScreen] = useNearScreen({ rootMargin: '300px 0px' });
 
   useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    sr.reveal(revealArchiveLink.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-  }, []);
+    if (isNearScreen) {
+      sr.reveal(revealTitle.current, srConfig());
+      sr.reveal(revealArchiveLink.current, srConfig());
+      revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
+    }
+  }, [isNearScreen]);
 
   const GRID_LIMIT = 6;
   const projects = data.filter(({ node }) => node);
@@ -145,7 +149,7 @@ const Projects = ({ data }) => {
   const projectsToShow = showMore ? projects : firstSix;
 
   return (
-    <StyledContainer>
+    <StyledContainer ref={ref}>
       <StyledTitle ref={revealTitle}>Other Noteworthy Projects</StyledTitle>
       <StyledArchiveLink to="/archive" ref={revealArchiveLink}>
         view the archive

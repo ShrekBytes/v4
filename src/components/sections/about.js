@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import sr from '@utils/sr';
 import { srConfig, github } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
+import useNearScreen from '@utils/useNearScreen';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
@@ -60,7 +61,7 @@ const StyledPic = styled.div`
     }
   }
 `;
-const StyledAvatar = styled(Img)`
+const StyledAvatar = styled(GatsbyImage)`
   position: relative;
   mix-blend-mode: multiply;
   filter: grayscale(100%) contrast(1);
@@ -115,11 +116,22 @@ const StyledAvatarLink = styled.a`
 const About = ({ data }) => {
   const { frontmatter, html } = data[0].node;
   const { title, skills, avatar } = frontmatter;
+  const image = getImage(avatar);
   const revealContainer = useRef(null);
-  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
+  const [ref, isNearScreen] = useNearScreen({ rootMargin: '300px 0px' });
+  useEffect(() => {
+    if (isNearScreen) {
+      sr.reveal(revealContainer.current, srConfig());
+    }
+  }, [isNearScreen]);
 
   return (
-    <StyledContainer id="about" ref={revealContainer}>
+    <StyledContainer
+      id="about"
+      ref={el => {
+        revealContainer.current = el;
+        ref.current = el;
+      }}>
       <Heading>{title}</Heading>
       <StyledFlexContainer>
         <StyledContent>
@@ -130,7 +142,7 @@ const About = ({ data }) => {
         </StyledContent>
         <StyledPic>
           <StyledAvatarLink href={github}>
-            <StyledAvatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
+            <StyledAvatar image={image} alt="Avatar" />
           </StyledAvatarLink>
         </StyledPic>
       </StyledFlexContainer>

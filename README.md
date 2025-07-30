@@ -15,63 +15,61 @@
 
 ![demo](/src/images/demo.png)
 
-## 🛠 Installation & Set Up
+# Modern Gatsby Portfolio
 
-1. Install the Gatsby CLI
+This is a modern, high-performance Gatsby portfolio site, fully updated and optimized for 2024+.
 
-   ```sh
-   npm install -g gatsby-cli
+## 🚀 Features
+
+- Gatsby v5, React 19, and latest ecosystem
+- Modern SEO with Gatsby Head API
+- Fast, intersection-observer-powered section preloading/animation
+- Scroll-to-top on refresh for a fresh feel
+- Yarn as the only package manager
+- Linting and Prettier formatting
+- Clean, minimal, and robust codebase
+
+## 🛠️ Setup
+
+1. **Install dependencies:**
+   ```bash
+   yarn install
+   ```
+2. **Start the dev server:**
+
+   ```bash
+   yarn dev
    ```
 
-2. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
+   - Accessible at http://localhost:8000, http://127.0.0.1:8000, and your LAN IP.
 
-   ```sh
-   nvm install
+3. **Production build:**
+   ```bash
+   yarn build
+   ```
+4. **Format code:**
+   ```bash
+   yarn format
    ```
 
-3. Install dependencies
+## 🧹 Best Practices
 
-   ```sh
-   yarn
-   ```
+- Use only Yarn (no npm lockfiles)
+- All main sections animate/preload as you scroll
+- Images and icons are optimized and square for manifest
+- Keep dependencies up to date with `yarn upgrade-interactive --latest`
+- Use the Head API for all SEO/meta tags
 
-4. Start the development server
+## ✨ Customization
 
-   ```sh
-   npm start
-   ```
+- Content is in `/content` and `/src/components/sections/`
+- Update `/src/config/index.js` for site metadata
+- Replace `/src/images/logo.png` with your own square icon
 
-## 🚀 Building and Running for Production
+## 📝 Credits
 
-1. Generate a full static production build
+- Based on Brittany Chiang’s and Gapur Kassym’s original portfolio, now fully modernized
 
-   ```sh
-   npm run build
-   ```
+---
 
-1. Preview the site as it will appear once deployed
-
-   ```sh
-   npm run serve
-   ```
-
-## 🎨 Color Reference
-
-| Color          | Hex                                                                |
-| -------------- | ------------------------------------------------------------------ |
-| Navy           | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) `#0a192f` |
-| Light Navy     | ![#172a45](https://via.placeholder.com/10/0a192f?text=+) `#172a45` |
-| Dark Grey      | ![#333f58](https://via.placeholder.com/10/333f58?text=+) `#333f58` |
-| Slate          | ![#8892b0](https://via.placeholder.com/10/8892b0?text=+) `#8892b0` |
-| Light Slate    | ![#a8b2d1](https://via.placeholder.com/10/a8b2d1?text=+) `#a8b2d1` |
-| Lightest Slate | ![#ccd6f6](https://via.placeholder.com/10/ccd6f6?text=+) `#ccd6f6` |
-| White          | ![#e6f1ff](https://via.placeholder.com/10/e6f1ff?text=+) `#e6f1ff` |
-| Green          | ![#64ffda](https://via.placeholder.com/10/64ffda?text=+) `#64ffda` |
-
-## 🚨 Forking this repo
-
-Many people have contacted me asking me if they can use this code for their own websites. The answer to that question is _usually_ "yes", with attribution. There are some cases, such as using this code for a business or something that is greater than a personal project, that I may be less comfortable saying yes to. If in doubt, please don't hesitate to ask me.
-
-I value keeping this site open source, but as you all know, _**plagiarism is bad**_. I spent a non-negligible amount of effort developing, designing, and trying to perfect this iteration of my website, and I am proud of it! All I ask is to not claim this effort as your own.
-
-So, feel free to fork this repo. If you do, please just give me proper credit by linking back to my website, https://brittanychiang.com. Refer to this handy [quora post](https://www.quora.com/Is-it-bad-to-copy-other-peoples-code) if you're not sure what to do. Thanks!
+Enjoy your blazing-fast, modern portfolio!

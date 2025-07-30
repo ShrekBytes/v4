@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Layout, Hero, About, Jobs, Featured, Projects, Contact } from '@components';
 import styled from 'styled-components';
 import { Main } from '@styles';
+import config from '@config';
 
 const StyledMainContainer = styled(Main)`
   counter-reset: section;
@@ -26,6 +27,43 @@ IndexPage.propTypes = {
   location: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };
+
+export function Head() {
+  return (
+    <>
+      <html lang="en" prefix="og: http://ogp.me/ns#" />
+      <title>{config.siteTitle}</title>
+      <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+      <link rel="canonical" href={config.siteUrl} />
+      <meta name="description" content={config.siteDescription} />
+      <meta name="keywords" content={config.siteKeywords} />
+      <meta name="google-site-verification" content={config.googleVerification} />
+      <meta property="og:title" content={config.siteTitle} />
+      <meta property="og:description" content={config.siteDescription} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={config.siteUrl} />
+      <meta property="og:site_name" content={config.siteTitle} />
+      <meta property="og:image" content={`${config.siteUrl}/images/og.png`} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/png" />
+      <meta property="og:locale" content={config.siteLanguage} />
+      <meta itemProp="name" content={config.siteTitle} />
+      <meta itemProp="description" content={config.siteDescription} />
+      <meta itemProp="image" content={`${config.siteUrl}/images/og.png`} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={config.siteUrl} />
+      <meta name="twitter:site" content={config.twitterHandle} />
+      <meta name="twitter:creator" content={config.twitterHandle} />
+      <meta name="twitter:title" content={config.siteTitle} />
+      <meta name="twitter:description" content={config.siteDescription} />
+      <meta name="twitter:image" content={`${config.siteUrl}/images/og.png`} />
+      <meta name="twitter:image:alt" content={config.siteTitle} />
+      <meta name="msapplication-TileColor" content={config.navyColor} />
+      <meta name="theme-color" content={config.navyColor} />
+    </>
+  );
+}
 
 export default IndexPage;
 
@@ -51,9 +89,7 @@ export const pageQuery = graphql`
             title
             avatar {
               childImageSharp {
-                fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#64ffda" }) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
+                gatsbyImageData(width: 700, quality: 90, placeholder: BLURRED)
               }
             }
             skills
@@ -64,7 +100,7 @@ export const pageQuery = graphql`
     }
     jobs: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/jobs/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
     ) {
       edges {
         node {
@@ -81,7 +117,7 @@ export const pageQuery = graphql`
     }
     featured: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/featured/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
     ) {
       edges {
         node {
@@ -89,9 +125,7 @@ export const pageQuery = graphql`
             title
             cover {
               childImageSharp {
-                fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#64ffda" }) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
+                gatsbyImageData(width: 700, quality: 90, placeholder: BLURRED)
               }
             }
             tech
@@ -107,7 +141,7 @@ export const pageQuery = graphql`
         fileAbsolutePath: { regex: "/projects/" }
         frontmatter: { showInProjects: { ne: false } }
       }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
     ) {
       edges {
         node {

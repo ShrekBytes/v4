@@ -3,3 +3,9 @@
  *
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
+
+export const onInitialClientRender = () => {
+  if (!window.location.hash) {
+    window.scrollTo(0, 0);
+  }
+};

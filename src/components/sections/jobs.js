@@ -4,6 +4,7 @@ import sr from '@utils/sr';
 import { srConfig } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
+import useNearScreen from '@utils/useNearScreen';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
@@ -160,7 +161,12 @@ const Jobs = ({ data }) => {
   const tabs = useRef([]);
 
   const revealContainer = useRef(null);
-  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
+  const [ref, isNearScreen] = useNearScreen({ rootMargin: '300px 0px' });
+  useEffect(() => {
+    if (isNearScreen) {
+      sr.reveal(revealContainer.current, srConfig());
+    }
+  }, [isNearScreen]);
 
   const focusTab = () => {
     if (tabs.current[tabFocus]) {
@@ -194,7 +200,12 @@ const Jobs = ({ data }) => {
   };
 
   return (
-    <StyledContainer id="jobs" ref={revealContainer}>
+    <StyledContainer
+      id="jobs"
+      ref={el => {
+        revealContainer.current = el;
+        ref.current = el;
+      }}>
       <Heading>Where I&apos;ve Worked</Heading>
       <StyledTabs>
         <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={e => onKeyPressed(e)}>

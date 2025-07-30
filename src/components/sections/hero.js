@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { email } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section } from '@styles';
+import useNearScreen from '@utils/useNearScreen';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
@@ -58,11 +59,14 @@ const StyledEmailLink = styled.a`
 
 const Hero = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [ref, isNearScreen] = useNearScreen({ rootMargin: '300px 0px' });
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 1000);
-    return () => clearTimeout(timeout);
-  }, []);
+    if (isNearScreen) {
+      const timeout = setTimeout(() => setIsMounted(true), 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [isNearScreen]);
 
   const { frontmatter, html } = data[0].node;
 
@@ -90,7 +94,7 @@ const Hero = ({ data }) => {
   const items = [one, two, three, four, five];
 
   return (
-    <StyledContainer>
+    <StyledContainer ref={ref}>
       <TransitionGroup component={null}>
         {isMounted &&
           items.map((item, i) => (

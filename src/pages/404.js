@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { Layout } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
-const { colors, fonts } = theme;
+const { colors, fontSizes, fonts } = theme;
+import config from '@config';
 
 const StyledMainContainer = styled(Main)`
   ${mixins.flexCenter};
@@ -58,5 +59,15 @@ const NotFoundPage = ({ location }) => {
 NotFoundPage.propTypes = {
   location: PropTypes.object.isRequired,
 };
+
+export function Head() {
+  return (
+    <>
+      <title>404: Not Found | {config.siteTitle}</title>
+      <meta name="robots" content="noindex" />
+      <meta name="description" content="Page not found." />
+    </>
+  );
+}
 
 export default NotFoundPage;

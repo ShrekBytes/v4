@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { graphql } from 'gatsby';
-import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
@@ -8,7 +7,8 @@ import { Layout } from '@components';
 import { IconGitHub, IconExternal } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
-const { colors, fonts, fontSizes } = theme;
+const { colors, fontSizes, fonts } = theme;
+import config from '@config';
 
 const StyledMainContainer = styled(Main)``;
 const StyledTableContainer = styled.div`
@@ -98,11 +98,6 @@ const ArchivePage = ({ location, data }) => {
 
   return (
     <Layout location={location}>
-      <Helmet>
-        <title>Archive | Gapur Kassym</title>
-        <link rel="canonical" href="https://gkassym.netlify.com/archive" />
-      </Helmet>
-
       <StyledMainContainer>
         <header ref={revealTitle}>
           <h1 className="big-title">Archive</h1>
@@ -185,6 +180,17 @@ ArchivePage.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
+export function Head() {
+  return (
+    <>
+      <title>Archive | {config.siteTitle}</title>
+      <meta name="description" content={config.siteDescription} />
+      <meta property="og:title" content={`Archive | ${config.siteTitle}`} />
+      <meta property="og:description" content={config.siteDescription} />
+    </>
+  );
+}
+
 export default ArchivePage;
 
 export const pageQuery = graphql`
@@ -194,7 +200,7 @@ export const pageQuery = graphql`
         fileAbsolutePath: { regex: "/projects/" }
         frontmatter: { showInProjects: { ne: false } }
       }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
     ) {
       edges {
         node {

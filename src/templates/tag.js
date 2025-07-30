@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { Layout } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
-const { colors, fontSizes } = theme;
+const { colors, fontSizes, fonts } = theme;
+import config from '@config';
 
 const StyledTagsContainer = styled(Main)`
   max-width: 1000px;
@@ -99,6 +100,19 @@ const TagTemplate = ({ pageContext, data, location }) => {
   );
 };
 
+export function Head({ pageContext }) {
+  return (
+    <>
+      <title>
+        {pageContext.tag} | Tags | {config.siteTitle}
+      </title>
+      <meta name="description" content={`Posts tagged with ${pageContext.tag}.`} />
+      <meta property="og:title" content={`${pageContext.tag} | Tags | ${config.siteTitle}`} />
+      <meta property="og:description" content={`Posts tagged with ${pageContext.tag}.`} />
+    </>
+  );
+}
+
 export default TagTemplate;
 
 TagTemplate.propTypes = {
@@ -123,10 +137,10 @@ TagTemplate.propTypes = {
 };
 
 export const pageQuery = graphql`
-  query($tag: String!) {
+  query ($tag: String!) {
     allMarkdownRemark(
       limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
       totalCount

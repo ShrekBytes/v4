@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Link, graphql } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
 import PropTypes from 'prop-types';
@@ -7,6 +6,7 @@ import { Layout } from '@components';
 import styled from 'styled-components';
 import { theme, mixins, Main } from '@styles';
 const { colors, fontSizes, fonts } = theme;
+import config from '@config';
 
 const StyledTagsContainer = styled(Main)`
   max-width: 1000px;
@@ -42,8 +42,6 @@ const TagsPage = ({
   location,
 }) => (
   <Layout location={location}>
-    <Helmet title={title} />
-
     <StyledTagsContainer>
       <span className="breadcrumb">
         <span className="arrow">&larr;</span>
@@ -93,10 +91,21 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(limit: 2000, filter: { frontmatter: { draft: { ne: true } } }) {
-      group(field: frontmatter___tags) {
+      group(field: { frontmatter: { tags: SELECT } }) {
         fieldValue
         totalCount
       }
     }
   }
 `;
+
+export function Head() {
+  return (
+    <>
+      <title>Tags | {config.siteTitle}</title>
+      <meta name="description" content="Browse posts by tag." />
+      <meta property="og:title" content={`Tags | ${config.siteTitle}`} />
+      <meta property="og:description" content="Browse posts by tag." />
+    </>
+  );
+}

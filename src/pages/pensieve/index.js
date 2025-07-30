@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { Helmet } from 'react-helmet';
 import kebabCase from 'lodash/kebabCase';
 import PropTypes from 'prop-types';
 import { Layout } from '@components';
@@ -8,6 +7,7 @@ import { IconZap } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
 const { colors, fontSizes, fonts } = theme;
+import config from '@config';
 
 const StyledMainContainer = styled(Main)`
   & > header {
@@ -17,7 +17,8 @@ const StyledMainContainer = styled(Main)`
     a {
       &:hover,
       &:focus {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>⚡</text></svg>")
+        cursor:
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>⚡</text></svg>")
             20 0,
           auto;
       }
@@ -122,63 +123,56 @@ const PensievePage = ({ location, data }) => {
 
   return (
     <Layout location={location}>
-      <Helmet>
-        <title>Pensieve | Gapur Kassym</title>
-        <link rel="canonical" href="https://gkassym.netlify.com/pensieve" />
-      </Helmet>
+      <header>
+        <h1 className="big-title">Pensieve</h1>
+        <p className="subtitle">
+          <a
+            href="https://www.wizardingworld.com/writing-by-jk-rowling/pensieve"
+            target="_blank"
+            rel="noopener noreferrer">
+            a collection of memories
+          </a>
+        </p>
+      </header>
 
-      <StyledMainContainer>
-        <header>
-          <h1 className="big-title">Pensieve</h1>
-          <p className="subtitle">
-            <a
-              href="https://www.wizardingworld.com/writing-by-jk-rowling/pensieve"
-              target="_blank"
-              rel="noopener noreferrer">
-              a collection of memories
-            </a>
-          </p>
-        </header>
+      <StyledGrid>
+        <div className="posts">
+          {posts.length > 0 &&
+            posts.map(({ node }, i) => {
+              const { frontmatter } = node;
+              const { title, description, slug, date, tags } = frontmatter;
+              const d = new Date(date);
 
-        <StyledGrid>
-          <div className="posts">
-            {posts.length > 0 &&
-              posts.map(({ node }, i) => {
-                const { frontmatter } = node;
-                const { title, description, slug, date, tags } = frontmatter;
-                const d = new Date(date);
-
-                return (
-                  <StyledPost key={i} tabIndex="0">
-                    <StyledPostInner>
-                      <header>
-                        <Link to={slug}>
-                          <StyledPostHeader>
-                            <StyledFolder>
-                              <IconZap />
-                            </StyledFolder>
-                          </StyledPostHeader>
-                          <StyledPostName>{title}</StyledPostName>
-                          <StyledPostDescription>{description}</StyledPostDescription>
-                        </Link>
-                      </header>
-                      <footer>
-                        <StyledDate>{`${d.toLocaleDateString()}`}</StyledDate>
-                        <StyledTags>
-                          {tags.map((tag, i) => (
-                            <li key={i}>
-                              <Link to={`/pensieve/tags/${kebabCase(tag)}/`}>#{tag}</Link>
-                            </li>
-                          ))}
-                        </StyledTags>
-                      </footer>
-                    </StyledPostInner>
-                  </StyledPost>
-                );
-              })}
-          </div>
-        </StyledGrid>
-      </StyledMainContainer>
+              return (
+                <StyledPost key={i} tabIndex="0">
+                  <StyledPostInner>
+                    <header>
+                      <Link to={slug}>
+                        <StyledPostHeader>
+                          <StyledFolder>
+                            <IconZap />
+                          </StyledFolder>
+                        </StyledPostHeader>
+                        <StyledPostName>{title}</StyledPostName>
+                        <StyledPostDescription>{description}</StyledPostDescription>
+                      </Link>
+                    </header>
+                    <footer>
+                      <StyledDate>{`${d.toLocaleDateString()}`}</StyledDate>
+                      <StyledTags>
+                        {tags.map((tag, i) => (
+                          <li key={i}>
+                            <Link to={`/pensieve/tags/${kebabCase(tag)}/`}>#{tag}</Link>
+                          </li>
+                        ))}
+                      </StyledTags>
+                    </footer>
+                  </StyledPostInner>
+                </StyledPost>
+              );
+            })}
+        </div>
+      </StyledGrid>
     </Layout>
   );
 };
@@ -194,7 +188,7 @@ export const pageQuery = graphql`
   {
     allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/posts/" }, frontmatter: { draft: { ne: true } } }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
     ) {
       edges {
         node {
@@ -212,3 +206,14 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export function Head() {
+  return (
+    <>
+      <title>Pensieve | {config.siteTitle}</title>
+      <meta name="description" content="A collection of memories and posts." />
+      <meta property="og:title" content={`Pensieve | ${config.siteTitle}`} />
+      <meta property="og:description" content="A collection of memories and posts." />
+    </>
+  );
+}

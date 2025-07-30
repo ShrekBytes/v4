@@ -4,6 +4,7 @@ import sr from '@utils/sr';
 import { srConfig, email } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
+import useNearScreen from '@utils/useNearScreen';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled(Section)`
@@ -47,10 +48,20 @@ const Contact = ({ data }) => {
   const { frontmatter, html } = data[0].node;
   const { title } = frontmatter;
   const revealContainer = useRef(null);
-  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
+  const [ref, isNearScreen] = useNearScreen({ rootMargin: '300px 0px' });
+  useEffect(() => {
+    if (isNearScreen) {
+      sr.reveal(revealContainer.current, srConfig());
+    }
+  }, [isNearScreen]);
 
   return (
-    <StyledContainer id="contact" ref={revealContainer}>
+    <StyledContainer
+      id="contact"
+      ref={el => {
+        revealContainer.current = el;
+        ref.current = el;
+      }}>
       <StyledHeading>What&apos;s Next?</StyledHeading>
 
       <StyledTitle>{title}</StyledTitle>
