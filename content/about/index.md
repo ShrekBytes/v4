@@ -2,24 +2,28 @@
 title: 'About Me'
 avatar: './me.jpg'
 skills:
-  - JavaScript (ES6+)
-  - HTML & (S)CSS
-  - React
-  - Redux
-  - Node.js
-  - Express
-  - React-Native
-  - Next.js
-  - GraphQL
-  - Typescript
-  - PostgreSQL
-  - MongoDB
+  - C
   - Java
-  - Android
+  - Lua
+  - Python
+  - Flutter
+  - Kotlin
+  - Firebase
+  - PostgreSQL
+  - Django
+  - Flask
+  - Arduino
+  - ESP32
+  - Figma
+  - Pygame
+  - Linux & Docker
+  - Shell Scripting
+  - Pentesting
+  - Bug Bounty
 ---
 
-Hello! I'm Walid, a full-stack software engineer and writer. Here's the link to my blog on [medium](https://gapur-kassym.medium.com). I love programming, writing, speaking and traveling.
+Hello! I'm **Walid**, a Computer Science and Engineering student with a strong passion for programming, gaming, and solving puzzles.
 
-As a software engineer, I enjoy using my obsessive attention to detail, my unequivocal love for making things that change the world. That's why I like to make things that make a difference.
+I'm particularly focused on **backend development** and **web security**. I thrive on challenges that require creativity, critical thinking, and attention to detail. I like building reliable software, exploring hardware, and strengthening systems through security research.
 
-Here are a few technologies I've been working with recently:
+My current skill set includes:
